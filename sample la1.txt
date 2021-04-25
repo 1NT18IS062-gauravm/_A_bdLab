@@ -1,0 +1,339 @@
+gaurav@gaurav-virtual-machine:~$ mongoimport --type csv -d breastcancer -c cancer --headerline --drop /home/gaurav/breast-cancer_csv.csv
+2021-04-19T17:55:24.100+0530	connected to: localhost
+2021-04-19T17:55:24.103+0530	dropping: breastcancer.cancer
+2021-04-19T17:55:24.144+0530	imported 286 documents
+gaurav@gaurav-virtual-machine:~$ mongo
+MongoDB shell version v3.6.8
+connecting to: mongodb://127.0.0.1:27017
+Implicit session: session { "id" : UUID("35850952-f0cf-49de-a644-0dbde705c537") }
+MongoDB server version: 3.6.8
+Server has startup warnings: 
+2021-04-19T17:41:40.529+0530 I STORAGE  [initandlisten] 
+2021-04-19T17:41:40.529+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2021-04-19T17:41:40.529+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2021-04-19T17:41:48.336+0530 I CONTROL  [initandlisten] 
+2021-04-19T17:41:48.336+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2021-04-19T17:41:48.336+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2021-04-19T17:41:48.336+0530 I CONTROL  [initandlisten] 
+> show dbs
+admin         0.000GB
+breastcancer  0.000GB
+config        0.000GB
+local         0.000GB
+> use breastcancer
+switched to db breastcancer
+> show collections
+cancer
+> db.cancer.find().pretty()
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ee2"),
+	"age" : "40-49",
+	"menopause" : "premeno",
+	"tumor-size" : "15-19",
+	"inv-nodes" : "0-2",
+	"node-caps" : "yes",
+	"deg-malig" : 3,
+	"breast" : "right",
+	"breast-quad" : "left_up",
+	"irradiat" : "no",
+	"Class" : "recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ee3"),
+	"age" : "50-59",
+	"menopause" : "ge40",
+	"tumor-size" : "15-19",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 1,
+	"breast" : "right",
+	"breast-quad" : "central",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ee4"),
+	"age" : "50-59",
+	"menopause" : "ge40",
+	"tumor-size" : "35-39",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "left",
+	"breast-quad" : "left_low",
+	"irradiat" : "no",
+	"Class" : "recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ee5"),
+	"age" : "40-49",
+	"menopause" : "premeno",
+	"tumor-size" : "35-39",
+	"inv-nodes" : "0-2",
+	"node-caps" : "yes",
+	"deg-malig" : 3,
+	"breast" : "right",
+	"breast-quad" : "left_low",
+	"irradiat" : "yes",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ee6"),
+	"age" : "40-49",
+	"menopause" : "premeno",
+	"tumor-size" : "30-34",
+	"inv-nodes" : "3-5",
+	"node-caps" : "yes",
+	"deg-malig" : 2,
+	"breast" : "left",
+	"breast-quad" : "right_up",
+	"irradiat" : "no",
+	"Class" : "recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ee7"),
+	"age" : "50-59",
+	"menopause" : "premeno",
+	"tumor-size" : "25-29",
+	"inv-nodes" : "3-5",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "right",
+	"breast-quad" : "left_up",
+	"irradiat" : "yes",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ee8"),
+	"age" : "50-59",
+	"menopause" : "ge40",
+	"tumor-size" : "40-44",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 3,
+	"breast" : "left",
+	"breast-quad" : "left_up",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ee9"),
+	"age" : "40-49",
+	"menopause" : "premeno",
+	"tumor-size" : "10-14",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "left",
+	"breast-quad" : "left_up",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68eea"),
+	"age" : "40-49",
+	"menopause" : "premeno",
+	"tumor-size" : "0-4",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "right",
+	"breast-quad" : "right_low",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68eeb"),
+	"age" : "40-49",
+	"menopause" : "ge40",
+	"tumor-size" : "40-44",
+	"inv-nodes" : "15-17",
+	"node-caps" : "yes",
+	"deg-malig" : 2,
+	"breast" : "right",
+	"breast-quad" : "left_up",
+	"irradiat" : "yes",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68eec"),
+	"age" : "50-59",
+	"menopause" : "premeno",
+	"tumor-size" : "25-29",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "left",
+	"breast-quad" : "left_low",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68eed"),
+	"age" : "60-69",
+	"menopause" : "ge40",
+	"tumor-size" : "15-19",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "right",
+	"breast-quad" : "left_up",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68eee"),
+	"age" : "50-59",
+	"menopause" : "ge40",
+	"tumor-size" : "30-34",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 1,
+	"breast" : "right",
+	"breast-quad" : "central",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68eef"),
+	"age" : "40-49",
+	"menopause" : "premeno",
+	"tumor-size" : "25-29",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "left",
+	"breast-quad" : "left_low",
+	"irradiat" : "yes",
+	"Class" : "recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ef0"),
+	"age" : "30-39",
+	"menopause" : "premeno",
+	"tumor-size" : "20-24",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 3,
+	"breast" : "left",
+	"breast-quad" : "central",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ef1"),
+	"age" : "50-59",
+	"menopause" : "premeno",
+	"tumor-size" : "10-14",
+	"inv-nodes" : "3-5",
+	"node-caps" : "no",
+	"deg-malig" : 1,
+	"breast" : "right",
+	"breast-quad" : "left_up",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ef2"),
+	"age" : "60-69",
+	"menopause" : "ge40",
+	"tumor-size" : "15-19",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "right",
+	"breast-quad" : "left_up",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ef3"),
+	"age" : "50-59",
+	"menopause" : "ge40",
+	"tumor-size" : "25-29",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 2,
+	"breast" : "right",
+	"breast-quad" : "left_up",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ef4"),
+	"age" : "50-59",
+	"menopause" : "ge40",
+	"tumor-size" : "20-24",
+	"inv-nodes" : "0-2",
+	"node-caps" : "no",
+	"deg-malig" : 3,
+	"breast" : "left",
+	"breast-quad" : "left_up",
+	"irradiat" : "no",
+	"Class" : "no-recurrence-events"
+}
+{
+	"_id" : ObjectId("607d76b4b3fa440266b68ef5"),
+	"age" : "50-59",
+	"menopause" : "lt40",
+	"tumor-size" : "20-24",
+	"inv-nodes" : "0-2",
+	"node-caps" : "",
+	"deg-malig" : 1,
+	"breast" : "left",
+	"breast-quad" : "left_low",
+	"irradiat" : "no",
+	"Class" : "recurrence-events"
+}
+Type "it" for more
+> exit
+bye
+gaurav@gaurav-virtual-machine:~$ mongo
+MongoDB shell version v3.6.8
+connecting to: mongodb://127.0.0.1:27017
+Implicit session: session { "id" : UUID("221ca919-960f-4c61-9c93-542442fe95f2") }
+MongoDB server version: 3.6.8
+Server has startup warnings: 
+2021-04-19T17:41:40.529+0530 I STORAGE  [initandlisten] 
+2021-04-19T17:41:40.529+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2021-04-19T17:41:40.529+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2021-04-19T17:41:48.336+0530 I CONTROL  [initandlisten] 
+2021-04-19T17:41:48.336+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2021-04-19T17:41:48.336+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2021-04-19T17:41:48.336+0530 I CONTROL  [initandlisten] 
+> show dbs
+admin         0.000GB
+breastcancer  0.000GB
+config        0.000GB
+local         0.000GB
+> use breastcancer
+switched to db breastcancer
+//INSERT
+ db.cancer.insert({ "age":"30-39","menopause":"ge40","tumor-size":"10-15","inv-nodes":"0-2","node-caps":"yes","deg-malig":"1","breast":"right","breast-quad":"central","irradiat":"yes","Class":"no-recurrence"})
+WriteResult({ "nInserted" : 1 })
+//READ
+ db.cancer.find({"age":"30-39","menopause":"ge40"})
+{ "_id" : ObjectId("607d80943d847647b784aa32"), "age" : "30-39", "menopause" : "ge40", "tumor-size" : "10-15", "inv-nodes" : "0-2", "node-caps" : "yes", "deg-malig" : "1", "breast" : "right", "breast-quad" : "central", "irradiat" : "yes", "Class" : "no-recurrence" }
+> 
+///UPDATE
+> db.cancer.update({age:"30-39"},{$set:{age:"100"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+///DELETE
+> db.cancer.remove({age:"30-39"})
+WriteResult({ "nRemoved" : 36 })
+
+
+//EXISTS
+> db.cancer.find({"age":{$exists:true}})
+>db.cancer.find({"age":{$exists:false}})
+
+//TYPE
+> db.cancer.find({"breast":{$type:0}})
+
+//REGEX
+> db.cancer.find({"breast":{$regex:"e"}})
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee4"), "age" : "50-59", "menopause" : "ge40", "tumor-size" : "35-39", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 2, "breast" : "left", "breast-quad" : "left_low", "irradiat" : "no", "Class" : "recurrence-events" }
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee6"), "age" : "40-49", "menopause" : "premeno", "tumor-size" : "30-34", "inv-nodes" : "3-5", "node-caps" : "yes", "deg-malig" : 2, "breast" : "left", "breast-quad" : "right_up", "irradiat" : "no", "Class" : "recurrence-events" }
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee8"), "age" : "50-59", "menopause" : "ge40", "tumor-size" : "40-44", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 3, "breast" : "left", "breast-quad" : "left_up", "irradiat" : "no", "Class" : "no-recurrence-events" }
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee9"), "age" : "40-49", "menopause" : "premeno", "tumor-size" : "10-14", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 2, "breast" : "left", "breast-quad" : "left_up", "irradiat" : "no", "Class" : "no-recurrence-events" }
