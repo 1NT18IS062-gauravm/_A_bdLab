@@ -337,3 +337,52 @@ WriteResult({ "nRemoved" : 36 })
 { "_id" : ObjectId("607d76b4b3fa440266b68ee6"), "age" : "40-49", "menopause" : "premeno", "tumor-size" : "30-34", "inv-nodes" : "3-5", "node-caps" : "yes", "deg-malig" : 2, "breast" : "left", "breast-quad" : "right_up", "irradiat" : "no", "Class" : "recurrence-events" }
 { "_id" : ObjectId("607d76b4b3fa440266b68ee8"), "age" : "50-59", "menopause" : "ge40", "tumor-size" : "40-44", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 3, "breast" : "left", "breast-quad" : "left_up", "irradiat" : "no", "Class" : "no-recurrence-events" }
 { "_id" : ObjectId("607d76b4b3fa440266b68ee9"), "age" : "40-49", "menopause" : "premeno", "tumor-size" : "10-14", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 2, "breast" : "left", "breast-quad" : "left_up", "irradiat" : "no", "Class" : "no-recurrence-events" }
+
+//DIFFERENT AGGREGATE OPERATIONS
+> db.cancer.aggregate([{$group:{_id:"$breast"}}])
+{ "_id" : "left" }
+{ "_id" : "right" }
+
+
+> db.cancer.aggregate([{$group:{_id:"$breast-quad"}}])
+{ "_id" : "" }
+{ "_id" : "left_low" }
+{ "_id" : "central" }
+{ "_id" : "right_low" }
+{ "_id" : "right_up" }
+{ "_id" : "left_up" }
+
+
+> db.cancer.aggregate([{$match:{irradiat:"no"}}])
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee2"), "age" : "40-49", "menopause" : "premeno", "tumor-size" : "15-19", "inv-nodes" : "0-2", "node-caps" : "yes", "deg-malig" : 3, "breast" : "right", "breast-quad" : "left_up", "irradiat" : "no", "Class" : "recurrence-events" }
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee3"), "age" : "50-59", "menopause" : "ge40", "tumor-size" : "15-19", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 1, "breast" : "right", "breast-quad" : "central", "irradiat" : "no", "Class" : "no-recurrence-events" }
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee4"), "age" : "50-59", "menopause" : "ge40", "tumor-size" : "35-39", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 2, "breast" : "left", "breast-quad" : "left_low", "irradiat" : "no", "Class" : "recurrence-events" }
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee6"), "age" : "40-49", "menopause" : "premeno", "tumor-size" : "30-34", "inv-nodes" : "3-5", "node-caps" : "yes", "deg-malig" : 2, "breast" : "left", "breast-quad" : "right_up", "irradiat" : "no", "Class" : "recurrence-events" }
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee8"), "age" : "50-59", "menopause" : "ge40", "tumor-size" : "40-44", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 3, "breast" : "left", "breast-quad" : "left_up", "irradiat" : "no", "Class" : "no-recurrence-events" }
+{ "_id" : ObjectId("607d76b4b3fa440266b68ee9"), "age" : "40-49", "menopause" : "premeno", "tumor-size" : "10-14", "inv-nodes" : "0-2", "node-caps" : "no", "deg-malig" : 2, "breast" : "left", "breast-quad" : "left_up", "irradiat" : "no", "Class" : "no-recurrence-events" }
+
+
+> db.cancer.aggregate([{$group:{_id:"irradiat","count":{$sum:1}}}])
+{ "_id" : "irradiat", "count" : 251 }
+
+
+//MAPREDUCE
+> db.cancer.mapReduce(function(){emit(this.menopause,this.irradiat);},function(key,values){return Array.sum(values)},{query:{breast:"right"},out:"mapoutput"})
+{
+	"result" : "mapoutput",
+	"timeMillis" : 243,
+	"counts" : {
+		"input" : 119,
+		"emit" : 119,
+		"reduce" : 4,
+		"output" : 3
+	},
+	"ok" : 1
+}
+
+
+
+//EXPORT
+> mongoexport --db breastcancer --collection cancer --/home/gaurav/breast-cancer_csv.csv
+2021-04-25T12:53:57.704+0538 connected to:mongodb://localhost/
+2021-04-25T12:53:57.704+0538 exported 7000 records
