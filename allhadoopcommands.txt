@@ -1,0 +1,124 @@
+doop@gaurav-virtual-machine:~$ cd hadoop-3.2.1/sbin
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -mkdir -p /user/hdoop/gaurav
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+
+Found 6 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 20:41 gaurav
+-rw-r--r--   1 hdoop supergroup         46 2021-05-04 12:47 input.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-10 11:46 output
+drwxr-xr-x   - hdoop supergroup          0 2021-05-04 12:23 prog2
+-rw-r--r--   1 hdoop supergroup         39 2021-05-10 11:25 wc.txt
+-rw-r--r--   1 hdoop supergroup         44 2021-05-04 12:34 wordcount.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ 
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -touchz gaurav/empty.txt
+
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ 
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -ls gaurav/
+
+Found 3 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 20:41 gaurav/1NT18IS062
+-rw-r--r--   1 hdoop supergroup          0 2021-05-19 21:00 gaurav/empty.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-19 20:40 gaurav/prog1.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ 
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -touchz gaurav/prog1.txt
+
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ 
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -ls gaurav/
+Found 3 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 20:41 gaurav/1NT18IS062
+-rw-r--r--   1 hdoop supergroup          0 2021-05-19 21:00 gaurav/empty.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-19 21:02 gaurav/prog1.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -mkdir gaurav/1NT18IS062
+
+mkdir: `gaurav/1NT18IS062': File exists
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ 
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -mkdir gaurav/1NT18IS62
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ gedit gaurav_062.txt
+
+
+
+hadoop fs -put gaurav_062.txt2021-05-19 21:07:26,255 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -cat gaurav_062.txt2021-05-19 21:07:42,566 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+syntax to list ls command is hadoop fs -ls
+
+
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -ls gaurav/1NT18IS62/
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -put gaurav_062.txt gaurav/1NT18IS62/
+2021-05-19 21:12:33,635 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -ls gaurav/1NT18IS62/
+Found 1 items
+-rw-r--r--   1 hdoop supergroup         43 2021-05-19 21:12 gaurav/1NT18IS62/gaurav_062.txt
+
+ 
+
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -touchz gaurav/empty.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -ls gaurav/
+Found 4 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 20:41 gaurav/1NT18IS062
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 21:12 gaurav/1NT18IS62
+-rw-r--r--   1 hdoop supergroup          0 2021-05-19 21:13 gaurav/empty.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-19 21:02 gaurav/prog1.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -copyToLocal empty.txt
+copyToLocal: `empty.txt': No such file or directory
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -copyToLocal gaurav/empty.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+Found 7 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 21:13 gaurav
+-rw-r--r--   1 hdoop supergroup         43 2021-05-19 21:07 gaurav_062.txt
+-rw-r--r--   1 hdoop supergroup         46 2021-05-04 12:47 input.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-10 11:46 output
+drwxr-xr-x   - hdoop supergroup          0 2021-05-04 12:23 prog2
+-rw-r--r--   1 hdoop supergroup         39 2021-05-10 11:25 wc.txt
+-rw-r--r--   1 hdoop supergroup         44 2021-05-04 12:34 wordcount.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ touch input.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ ls
+distribute-exclude.sh    refresh-namenodes.sh  stop-all.sh
+empty.txt                start-all.cmd         stop-balancer.sh
+FederationStateStore     start-all.sh          stop-dfs.cmd
+gaurav_062.txt           start-balancer.sh     stop-dfs.sh
+hadoop-daemon.sh         start-dfs.cmd         stop-secure-dns.sh
+hadoop-daemons.sh        start-dfs.sh          stop-yarn.cmd
+httpfs.sh                start-secure-dns.sh   stop-yarn.sh
+input.txt                start-yarn.cmd        workers.sh
+kms.sh                   start-yarn.sh         yarn-daemon.sh
+mr-jobhistory-daemon.sh  stop-all.cmd          yarn-daemons.sh
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -moveFromLocal input.txt gaurav/1NT18IS62/
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ ls
+distribute-exclude.sh    start-all.cmd        stop-balancer.sh
+empty.txt                start-all.sh         stop-dfs.cmd
+FederationStateStore     start-balancer.sh    stop-dfs.sh
+gaurav_062.txt           start-dfs.cmd        stop-secure-dns.sh
+hadoop-daemon.sh         start-dfs.sh         stop-yarn.cmd
+hadoop-daemons.sh        start-secure-dns.sh  stop-yarn.sh
+httpfs.sh                start-yarn.cmd       workers.sh
+kms.sh                   start-yarn.sh        yarn-daemon.sh
+mr-jobhistory-daemon.sh  stop-all.cmd         yarn-daemons.sh
+refresh-namenodes.sh     stop-all.sh
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -ls gaurav/1NT18IS62
+Found 2 items
+-rw-r--r--   1 hdoop supergroup         43 2021-05-19 21:12 gaurav/1NT18IS62/gaurav_062.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-19 21:16 gaurav/1NT18IS62/input.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -cp gaurav/1NT18IS62/gaurav_062.txt gaurav/f1_copy.txt
+2021-05-19 21:18:27,221 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-05-19 21:18:27,448 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -cat gaurav/f1_copy.txt
+2021-05-19 21:18:55,775 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+syntax to list ls command is hadoop fs -ls
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -du gaurav/
+0   0   gaurav/1NT18IS062
+43  43  gaurav/1NT18IS62
+0   0   gaurav/empty.txt
+43  43  gaurav/f1_copy.txt
+0   0   gaurav/prog1.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -du gaurav/1NT18IS62
+43  43  gaurav/1NT18IS62/gaurav_062.txt
+0   0   gaurav/1NT18IS62/input.txt
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -stat gaurav
+2021-05-19 15:48:27
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ hadoop fs -stat gaurav/1NT18IS62
+2021-05-19 15:46:24
+hdoop@gaurav-virtual-machine:~/hadoop-3.2.1/sbin$ 
+
+
+
+
